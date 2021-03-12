@@ -8,6 +8,8 @@ void print_numbers(const char *separator, const unsigned int n, ...);
 void print_strings(const char *separator, const unsigned int n, ...);
 void print_all(const char * const format, ...);
 
+void new_function();
+
 /**
  * struct op_o - Struct fly_ops
  * Desc: Flying operators
