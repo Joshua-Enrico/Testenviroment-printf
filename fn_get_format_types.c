@@ -2,12 +2,16 @@
 
 fmt_t *get_format_types() {
 	return {
-        {"c", op_c}, 
-        {"s", op_s},
-        {"i", op_d},
-        {"d", op_d},
-				{"x", op_x},
-        {"%", op_mod},
+        {"c", print_char}, 
+        {"s", print_string},
+        {"%", print percent},
+        {"i", print_int},
+        {"d", print_int},
+        {"b", print_binary},
+        {"u", print_unsigned},
+        {"o", print_unsgd_octal},
+				{"x", print_unsgd_hexadecimal}, 
+        {"X", print_hexa_upper}, 
         {NULL, NULL}
     };
 }
