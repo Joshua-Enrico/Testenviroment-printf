@@ -13,7 +13,7 @@ int _printf(const char *format, ...)
 
     };
     va_list list;
-    int contador = 0;
+    int contador = 0, bandera;
     int i = 0, j = 0;
 
     va_start(list, format);
@@ -24,13 +24,18 @@ int _printf(const char *format, ...)
         {
             for (j = 0; ops[j].op != NULL; j++)
             {
-                if (format[i] == ops[j].op[0])
+                if (format[i + 1] == ops[j].op[0])
                 {
                     contador += ops[j].f(list);
+                    bandera++;
 
                     /* aun me falta ver varias cosas aqui, asi que solo me quedo en la parte que comparo */
                 }
             }
         }
+        else
+        {
+            _putchar(format[i]); 
+            /*el problema que tengo es que una vez terminada de imprimir la funcion y regresar el formato i imprime de mas*/
     }
 }
