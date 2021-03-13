@@ -1,18 +1,16 @@
 #include "holberton.h"
 
-int handle_print(char *format, va_list list)
+/**
+ * handle_print - Prints an argument based on its type
+ */
+int handle_print(char fmt, va_list list)
 {
-    int bandera;
-    fmt_t fmt_types = get_format_types();
+    int i, printed_chars = 0;
+    fmt_t fmt_types[] = get_formats();
 
-    for (j = 0; fmt_types[j].op != NULL; j++)
-    {
-        if (format[i + 1] == fmt_types[j].op[0])
-        {
-            contador += fmt_types[j].f(list);
-            bandera++;
+    for (i = 0; fmt_types[i].fmt != '\0'; i++)
+        if (fmt == fmt_types[i].fmt)
+            return fmt_types[i].fn(list);
 
-            /* aun me falta ver varias cosas aqui, asi que solo me quedo en la parte que comparo */
-        }
-    }
+    return 0;
 }
