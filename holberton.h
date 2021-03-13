@@ -26,8 +26,8 @@ typedef struct op_o
 } op_t;
 
 int op_c(va_list op_d);/*char*/
-int op_ss(va_list op_d);
+int op_ss(va_list op_d);/*string*/
 int op_i(va_list op_d);/*entero*/
-int op_dd(va_list op_d);
-int op_z(va_list op_d);
+int op_dd(va_list op_d);/*number of integer inter*/
+int op_z(va_list op_d);/* % */
 #endif /* HOL_H*/
