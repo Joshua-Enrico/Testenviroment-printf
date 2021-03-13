@@ -12,7 +12,8 @@ int op_c(va_list op_l) /*char*/
 
     _putchar(va_arg(op_l, int));
 
-    return ("aun no hago el main principal");
+    return ("retorna algo");/*creo que retorna 1 , no estoy seguro*/
+    
     /*caso de prueba*/
     /*_printf("Character:[%c]\n", 'H');
     printf("Character:[%c]\n", 'H');*/
@@ -37,7 +38,7 @@ int op_s(va_list op_l)
         {
             _putchar(x[contador]);
             contador++;
-            return ("aun no se si voy a usar return");
+            return ("algo tiene que retornar ");/* creo que retorna "contador" no estoy seguro*/
 
             /*caso de prueba */
             /*_printf("String:[%s]\n", "I am a string !");
@@ -63,5 +64,5 @@ int op_mod(va_list op_l) /** aqui estoy viendo que se usa __attribute__ pero aun
 int op_d(va_list op_l) /* creo que el caso i y d irian aqui , aun no estoy seguro*/
 {
 
-    /* aqui va el caso de prueba en caso de string en negativo  pero aun no veo la logica de quitar el negativo y imprimir lo demas , no la recuerdo*/
+    /* aqui va el caso de prueba en caso de numero  en negativo  pero aun no veo la logica de quitar el negativo y imprimir lo demas , no la recuerdo*/
 }
