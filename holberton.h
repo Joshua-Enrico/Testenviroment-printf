@@ -31,7 +31,7 @@ int print_binary(va_list types);
 
 int print_unsigned(va_list types);
 int print_unsgd_octal(va_list types);
-int print_unsgd_hexadecimal(va_list types);
+int print_hexadecimal(va_list types);
 int print_hexa_upper(va_list types);
 
 #endif /* HOL_H */
