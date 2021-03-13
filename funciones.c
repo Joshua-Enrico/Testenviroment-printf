@@ -12,8 +12,8 @@ int op_c(va_list op_l) /*char*/
 
     _putchar(va_arg(op_l, int));
 
-    return ("retorna algo");/*creo que retorna 1 , no estoy seguro*/
-    
+    return (1);/*creo que retorna 1 , hasta ahora funciona*/
+
     /*caso de prueba*/
     /*_printf("Character:[%c]\n", 'H');
     printf("Character:[%c]\n", 'H');*/
@@ -38,7 +38,7 @@ int op_s(va_list op_l)
         {
             _putchar(x[contador]);
             contador++;
-            return ("algo tiene que retornar ");/* creo que retorna "contador" no estoy seguro*/
+            return (contador);/* retornamos para que se siga imprimiento lo restante en el main*/
 
             /*caso de prueba */
             /*_printf("String:[%s]\n", "I am a string !");
