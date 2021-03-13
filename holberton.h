@@ -7,19 +7,31 @@
 /**
  * struct op - Struct op
  *
- * @op: The operator
+ * @op: The format
  * @f: The function associated
  */
-typedef struct op
+typedef struct fmt
 {
-	char *op;
-	int (*f)(va_list);
-} op_t;
+	// 
+	char fmt;
+	int (*fn)(va_list);
+} fmt_t;
 
 int _putchar(char a);
 int _printf(const char *format, ...);
-int op_c(va_list op_l);
-int op_s(va_list op_l);
-int op_mod(va_list op_l);
-int op_d(va_list op_l);
+
+/* Funtions to print chars and strings */
+int print_char(va_list);
+int print_string(va_list);
+int print_percent(va_list);
+
+/* Functions to print numbers */
+int print_int(va_list);
+int print_binary(va_list);
+
+int print_unsigned(va_list);
+int print_octal(va_list);
+int print_hexadecimal(va_list);
+int print_hexa_upper(va_list);
+
 #endif /* HOL_H */
