@@ -2,24 +2,20 @@
 
 int _printf(const char *format, ...)
 {
+    int i, printed_chars = 0;
     va_list list;
-    int contador = 0;
-    int i = 0, j = 0;
 
     va_start(list, format);
 
     for (i = 0; format && format[i] != '\0'; i++)
     {
         while (format[i] != '%')
-        {
-            _putchar(format[i]);
-            i++;
-        }
+            _putchar(format[i++]), printed_chars++;
 
-        i++;
-
-        handle_print(format[i + 1], va_list list);
+        printed_chars += handle_print(format[++i], list);
     }
 
     va_end(list);
+
+    return printed_chars;
 }
