@@ -16,6 +16,9 @@ int handle_print(char fmt, va_list list)
         {'u', print_unsigned},
         {'x', print_hexadecimal},
         {'X', print_hexa_upper},
+        /*{'x', print_hexadecimal},
+        {'X', print_hexa_upper},*/
+        {'b', print_binary},
         {'\0', NULL}
     };
 

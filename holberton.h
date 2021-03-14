@@ -39,6 +39,7 @@ int print_unsgd_octal(va_list types);
 int print_hexadecimal(va_list types);
 int print_hexa_upper(va_list types);
 */
+int print_binary(va_list types);
 
 /****************** UTILS ******************/
 int len(char *);
