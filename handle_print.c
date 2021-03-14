@@ -21,6 +21,7 @@ int handle_print(char fmt, va_list list)
         {'X', print_hexa_upper},
         {'p', print_pointer},
         {'S', print_non_printable},
+        {'r', print_reverse},
         {'\0', NULL}
     };
 

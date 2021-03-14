@@ -41,6 +41,9 @@ int print_non_printable(va_list types, char buffer[]);
 /* Funcion to print memory address */
 int print_pointer(va_list types, char buffer[]);
 
+/*Function to print string in reverse*/
+int print_reverse(va_list types, char buffer []);
+
 
 /****************** UTILS ******************/
 int len(char *);
