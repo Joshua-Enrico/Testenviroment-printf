@@ -22,6 +22,7 @@ int handle_print(char fmt, va_list list)
         {'p', print_pointer},
         {'S', print_non_printable},
         {'r', print_reverse},
+        {'R', print_rot13string},
         {'\0', NULL}
     };
 

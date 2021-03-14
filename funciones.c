@@ -5,27 +5,27 @@
 
 /**
  * print_char - Prints a char
- * @list: List of arguments
+ * @types: Lista of arguments
  * @buffer: Buffer array to handle print
- * 
+ *
  * Return: Number of chars printed
  */
-int print_char(va_list list, char buffer[])
+int print_char(va_list types, char buffer[])
 {
-	char c = va_arg(list, int);
-	return write(1, &c, 1);
+	char c = va_arg(types, int);
+	return (write(1, &c, 1));
 }
 /************************* PRINT A STRING *************************/
 /**
  * print_string - Prints a string
- * @list: List of arguments
+ * @types: Lista of arguments
  * @buffer: Buffer array to handle print
  * 
  * Return: Number of chars printed
  */
-int print_string(va_list list, char buffer[])
+int print_string(va_list types, char buffer[])
 {
-	char *str = va_arg(list, char *);
+	char *str = va_arg(types, char *);
 
 	if (str == NULL)
 		return write(1, "(null)", 6);
@@ -35,19 +35,19 @@ int print_string(va_list list, char buffer[])
 /************************* PRINT PERCENT SIGN *************************/
 /**
  * print_percent - Prints a percent sign
- * @list: List of arguments
+ * @types: Lista of arguments
  * @buffer: Buffer array to handle print
  * 
  * Return: Number of chars printed
  */
-int print_percent(va_list list, char buffer[])
+int print_percent(va_list types, char buffer[])
 {
 	return write(1, "%%", 1);
 }
 /************************* PRINT INTEGERS AND DECIMAL *************************/
 /**
- * int print_int - Prints Integer and decimal
- * @list: Lista of arguments
+ * print_int - Prints Integer and decimal
+ * @types: Lista of arguments
  * @buffer: Buffer array to handle print
  * 
  * Return: Numbers of char printed.
@@ -101,7 +101,7 @@ int print_int(va_list types, char buffer[])
 /************************* PRINT BINARY *************************/
 /**
  * print_binary - Prints an unsigned number
- * @list: Lista of arguments
+ * @types: Lista of arguments
  * @buffer: Buffer array to handle print
  * 
  * Return: Numbers of char printed.
@@ -136,15 +136,15 @@ int print_binary(va_list types, char buffer[])
 /************************* PRINT UNSIGNED NUMBER *************************/
 /**
  * print_unsigned - Prints an unsigned number
- * @list: Lista of arguments
+ * @types: Lista of arguments
  * @buffer: Buffer array to handle print
  * 
  * Return: Number of chars printed
  */
-int print_unsigned(va_list list, char buffer[])
+int print_unsigned(va_list types, char buffer[])
 {
 	int i = BUFF_SIZE - 2;
-	unsigned int num = va_arg(list, unsigned int);
+	unsigned int num = va_arg(types, unsigned int);
 
 	if (num == 0)
 		return write(1, "0", 1);
@@ -165,15 +165,15 @@ int print_unsigned(va_list list, char buffer[])
 
 /************************* PRINT UNSIGNED NUMBER IN OCTAL  *************************/
 /**
- * print_unsigned - Prints an unsigned number in octal notation
- * @list: List of arguments
- * 
+ * print_octal - Prints an unsigned number in octal notation
+ * @types: Lista of arguments
+ * @buffer: Buffer array to handle print
  * Return: Number of chars printed
  */
-int print_octal(va_list list, char buffer[])
+int print_octal(va_list types, char buffer[])
 {
 	int i = BUFF_SIZE - 2;
-	unsigned int num = va_arg(list, unsigned int);
+	unsigned int num = va_arg(types, unsigned int);
 
 	if (num == 0)
 		return write(1, "0", 1);
@@ -194,45 +194,45 @@ int print_octal(va_list list, char buffer[])
 
 /************************* PRINT UNSIGNED NUMBER IN HEXADECIMAL *************************/
 /**
- * print_unsigned - Prints an unsigned number in hexadecimal notation
- * @list: Lista of arguments
+ * print_hexadecimal - Prints an unsigned number in hexadecimal notation
+ * @types: Lista of arguments
  * @buffer: Buffer array to handle print
  * 
  * Return: Number of chars printed
  */
-int print_hexadecimal(va_list list, char buffer[])
+int print_hexadecimal(va_list types, char buffer[])
 {
-	return print_hexa(list, "0123456789abcdef", buffer);
+	return print_hexa(types, "0123456789abcdef", buffer);
 }
 
 
 /************************* PRINT UNSIGNED NUMBER IN UPPER HEXADECIMAL *************************/
 /**
- * print_unsigned - Prints an unsigned number in upper hexadecimal notation
- * @list: Lista of arguments
+ * print_hexa_upper - Prints an unsigned number in upper hexadecimal notation
+ * @types: Lista of arguments
  * @buffer: Buffer array to handle print
  * 
  * Return: Number of chars printed
  */
-int print_hexa_upper(va_list list, char buffer[])
+int print_hexa_upper(va_list types, char buffer[])
 {
-	return print_hexa(list, "0123456789ABCDEF", buffer);
+	return print_hexa(types, "0123456789ABCDEF", buffer);
 }
 
 
 /************************* PRINT HEXX NUM IN LOWER OR UPPER *************************/
 /**
  * print_hexa - Prints a hexadecimal number in lower or upper
- * @list: List of arguments
+ * @types: Lista of arguments
  * @map_to: Array of values to map the number to
  * @buffer: Buffer array to handle print
  * 
  * Return: Number of chars printed
  */
-int print_hexa(va_list list, char map_to[], char buffer[])
+int print_hexa(va_list types, char map_to[], char buffer[])
 {
 	int i = BUFF_SIZE - 2;
-	unsigned int num = va_arg(list, unsigned int);
+	unsigned int num = va_arg(types, unsigned int);
 
 	if (num == 0)
 		return write(1, "0", 1);
@@ -253,17 +253,17 @@ int print_hexa(va_list list, char map_to[], char buffer[])
 /************************* PRINT POINTER *************************/
 /**
  * print_pointer - Prints the value of a pointer variable
- * @list: List of arguments
+ * @types: Lista of arguments
  * @buffer: Buffer array to handle print
  * 
  * Return: Number of chars printed
  */
-int print_pointer(va_list list, char buffer[])
+int print_pointer(va_list types, char buffer[])
 {
 	int i = BUFF_SIZE - 2;
 	unsigned long num_addrs;
 	char map_to[] = "0123456789abcdef";
-	void *addrs = va_arg(list, void *);
+	void *addrs = va_arg(types, void *);
 
 	if (addrs == NULL)
 		return write(1, "(nil)", 5);
@@ -286,15 +286,15 @@ int print_pointer(va_list list, char buffer[])
 /************************* PRINT NON PRINTABLE *************************/
 /**
  * print_non_printable - Prints ascii codes in hexa of non printable chars
- * @list: List of arguments
+ * @types: Lista of arguments
  * @buffer: Buffer array to handle print
  * 
  * Return: Number of chars printed
  */
-int print_non_printable(va_list list, char buffer[])
+int print_non_printable(va_list types, char buffer[])
 {
 	int i = 0, offset = 0;
-	char *str = va_arg(list, char *);
+	char *str = va_arg(types, char *);
 
 	if (str == NULL)
 		return write(1, "(null)", 6);
@@ -317,7 +317,7 @@ int print_non_printable(va_list list, char buffer[])
 /************************* PRINT REVERSE *************************/
 /**
  * print_reverse - Prints reverse string.
- * @list: List of arguments
+ * @types: Lista of arguments
  * @buffer: Buffer array to handle print
  * 
  * Return: Numbers of chars printed
@@ -343,4 +343,46 @@ int print_reverse(va_list types, char buffer[])
 		count++;
 	}
 	return(count);
+}
+/************************* PRINT A STRING IN ROT13 *************************/
+/**
+ * print_rot13string - Print a string in rot13.
+ * @types: Lista of arguments
+ * @buffer: Buffer array to handle print
+ * 
+ * Return: Numbers of chars printed
+ */
+int print_rot13string(va_list types, char buffer [])
+{
+    char x;
+    char *str;
+    unsigned int i, j;
+    int count = 0;
+    char in[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    char out[] = "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
+
+    str = va_arg(types, char *);
+    if (str == NULL)
+        str = "(ahyy)";
+    for (i = 0; str[i]; i++)
+    {
+        for (j = 0; in[j]; j++)
+        {
+            if (in[j] == str[i])
+            {
+              x = out[j];
+                write(1, &x, 1);
+                count++;
+                break;
+            }
+        }
+        if (!in[j])
+        {
+          x = str[i];
+            write(1, &x, 1);
+            count++;
+        }
+    }
+    return (count);
+
 }
