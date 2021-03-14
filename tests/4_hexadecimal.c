@@ -18,6 +18,12 @@ int main(void)
 	printf(" => %d\n", len2);
 	printf("Correct: %d\n\n", len1 == len2);
 
+	len1 = printf("Unsigned hexadecimal:[%x, %X]", -ui, -ui);
+	printf(" => %d\n", len1);
+	len2 = _printf("Unsigned hexadecimal:[%x, %X]", -ui, -ui);
+	printf(" => %d\n", len2);
+	printf("Correct: %d\n\n", len1 == len2);
+
 	len1 = printf("Unsigned hexadecimal:[%x, %X]", -12932, -12932);
 	printf(" => %d\n", len1);
 	len2 = _printf("Unsigned hexadecimal:[%x, %X]", -12932, -12932);

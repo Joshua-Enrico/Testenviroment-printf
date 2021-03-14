@@ -168,27 +168,7 @@ int print_octal(va_list list)
  */
 int print_hexadecimal(va_list list)
 {
-	int i = 29;
-	char map_to[] = "0123456789abcdef";
-	char num_hexa_c[30];
-	unsigned int num = va_arg(list, unsigned int);
-
-	if (num == 0)
-		return write(1, "0", 1);
-
-	num_hexa_c[30] = '\0';
-
-	while (num > 0)
-	{
-		num_hexa_c[i--] = map_to[num % 16];
-		num /= 16;
-	}
-	
-	i++;
-
-	write(1, &num_hexa_c[i], 30 - i);
-
-	return (30 - i);
+	return print_hexa(list, "0123456789abcdef");
 }
 
 /**
@@ -197,8 +177,17 @@ int print_hexadecimal(va_list list)
  */
 int print_hexa_upper(va_list list)
 {
+	return print_hexa(list, "0123456789ABCDEF");
+}
+
+/**
+ * print_hexa - Prints a hexadecimal number in lower or upper
+ * @list: List of arguments
+ * @map_to: Array of values to map the number to
+ */
+int print_hexa(va_list list, char map_to[])
+{
 	int i = 29;
-	char map_to[] = "0123456789ABCDEF";
 	char num_hexa_c[30];
 	unsigned int num = va_arg(list, unsigned int);
 
