@@ -5,7 +5,7 @@
  * print_char - Prints a char
  * @list: List of arguments
  */
-int print_char(va_list list)
+int print_char(va_list list, char buffer[])
 {
 	char c = va_arg(list, int);
 	return write(1, &c, 1);
@@ -15,9 +15,9 @@ int print_char(va_list list)
  * print_string - Prints a string
  * @list: List of arguments
  */
-int print_string(va_list list)
+int print_string(va_list list, char buffer[])
 {
-    int length = 0;
+  int length = 0;
 	char *str = va_arg(list, char *);
 
     if (str == NULL)
@@ -30,15 +30,14 @@ int print_string(va_list list)
  * print_percent - Prints a percent sign
  * @list: List of arguments
  */
-int print_percent(va_list list)
+int print_percent(va_list list, char buffer[])
 {
 	char p = '%';
 	return write(1, &p, 1);
 }
 
-int print_int(va_list types)
+int print_int(va_list types, char buffer[])
 {
-
 	unsigned int g, f, c = 0, i = 0;
 	unsigned long int b = 1;
 	int num = va_arg(types, int);
@@ -83,7 +82,7 @@ int print_int(va_list types)
 	return (i);
 }
 
-int print_binary(va_list types)
+int print_binary(va_list types, char buffer[])
 {
 	unsigned int n, m, i, sum;
 	unsigned int a[32];
@@ -114,70 +113,68 @@ int print_binary(va_list types)
  * print_unsigned - Prints an unsigned number
  * @list: Lista of arguments
  */
-int print_unsigned(va_list list)
+int print_unsigned(va_list list, char buffer[])
 {
-    int digits, divisor;
-    char cnum = '0';
+		int i = BUFF_SIZE - 2;
     unsigned int num = va_arg(list, unsigned int);
 
-    digits = count_digits(num);
-    divisor = ten_to_power(digits - 1);
+		if (num == 0)
+			return write(1, "0", 1);
 
-    while (divisor > 0)
-    {
-        cnum = (num / divisor) + '0';
-        write(1, &cnum, 1);
-        num %= divisor;
-        divisor /= 10;
-    }
+		buffer[BUFF_SIZE - 1] = '\0';
 
-    return (digits);
+		while (num > 0)
+		{
+			buffer[i--] = (num % 10) + '0';
+			num /= 10;
+		}
+
+		i++;
+
+		return (write(1, &buffer[i], BUFF_SIZE - i) - 1);
 }
 
 /**
  * print_unsigned - Prints an unsigned number in octal notation
- * @list: Lista of arguments
+ * @list: List of arguments
  */
-int print_octal(va_list list)
+int print_octal(va_list list, char buffer[])
 {
-	int i = 29;
-	char num_octal_c[30];
+	int i = BUFF_SIZE - 2;
 	unsigned int num = va_arg(list, unsigned int);
 
 	if (num == 0)
 		return write(1, "0", 1);
 
-	num_octal_c[30] = '\0';
+	buffer[BUFF_SIZE - 1] = '\0';
 
 	while (num > 0)
 	{
-		num_octal_c[i--] = (num % 8) + '0';
+		buffer[i--] = (num % 8) + '0';
 		num /= 8;
 	}
-	
+
 	i++;
 
-	write(1, &num_octal_c[i], 30 - i);
-
-	return (30 - i);
+	return (write(1, &buffer[i], BUFF_SIZE - i) - 1);
 }
 
 /**
  * print_unsigned - Prints an unsigned number in hexadecimal notation
  * @list: Lista of arguments
  */
-int print_hexadecimal(va_list list)
+int print_hexadecimal(va_list list, char buffer[])
 {
-	return print_hexa(list, "0123456789abcdef");
+	return print_hexa(list, "0123456789abcdef", buffer);
 }
 
 /**
  * print_unsigned - Prints an unsigned number in upper hexadecimal notation
  * @list: Lista of arguments
  */
-int print_hexa_upper(va_list list)
+int print_hexa_upper(va_list list, char buffer[])
 {
-	return print_hexa(list, "0123456789ABCDEF");
+	return print_hexa(list, "0123456789ABCDEF", buffer);
 }
 
 /**
@@ -185,26 +182,23 @@ int print_hexa_upper(va_list list)
  * @list: List of arguments
  * @map_to: Array of values to map the number to
  */
-int print_hexa(va_list list, char map_to[])
+int print_hexa(va_list list, char map_to[], char buffer[])
 {
-	int i = 29;
-	char num_hexa_c[30];
+	int i = BUFF_SIZE - 2;
 	unsigned int num = va_arg(list, unsigned int);
 
 	if (num == 0)
 		return write(1, "0", 1);
 
-	num_hexa_c[30] = '\0';
+	buffer[BUFF_SIZE - 1] = '\0';
 
 	while (num > 0)
 	{
-		num_hexa_c[i--] = map_to[num % 16];
+		buffer[i--] = map_to[num % 16];
 		num /= 16;
 	}
 	
 	i++;
 
-	write(1, &num_hexa_c[i], 30 - i);
-
-	return (30 - i);
+	return (write(1, &buffer[i], BUFF_SIZE - i) - 1);
 }
