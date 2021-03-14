@@ -3,12 +3,14 @@
 
 /**
  * Command to run test:
- * gcc ./tests/0_test_strings.c _printf.c handle_print.c funciones.c utils.c 1_test_int.c
+ * gcc ./_printf.c handle_print.c funciones.c utils.c  tests/1_test_int.c
  */
 int main(void)
 {
     int len;
     int len2;
+    len = _printf("Let's try to printf a simple sentence.\n");
+	len2 = printf("Let's try to printf a simple sentence.\n");
 
     _printf("Length:[%d, %i]\n", len, len);
     printf("Length:[%d, %i]\n", len2, len2);

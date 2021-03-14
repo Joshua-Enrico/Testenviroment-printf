@@ -11,10 +11,11 @@ int handle_print(char fmt, va_list list)
         {'c', print_char},
         {'s', print_string},
         {'%', print_percent},
-        /*{'i', print_int},
+        {'i', print_int},
         {'d', print_int},
-        {'x', print_hexadecimal},
+        /*{'x', print_hexadecimal},
         {'X', print_hexa_upper},*/
+        {'b', print_binary},
         {'\0', 0}
     };
 
