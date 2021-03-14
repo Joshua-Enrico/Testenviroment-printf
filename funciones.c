@@ -20,8 +20,8 @@ int print_string(va_list list, char buffer[])
   int length = 0;
 	char *str = va_arg(list, char *);
 
-    if (str == NULL)
-        return write(1, "(null)", 6);
+	if (str == NULL)
+			return write(1, "(null)", 6);
 
 	return write(1, str, len(str));
 }
@@ -201,4 +201,28 @@ int print_hexa(va_list list, char map_to[], char buffer[])
 	i++;
 
 	return (write(1, &buffer[i], BUFF_SIZE - i) - 1);
+}
+
+/************************* PRINT NON PRINTABLE *************************/
+int print_non_printable(va_list list, char buffer[])
+{
+	int i = 0, offset = 0;
+	char *str = va_arg(list, char *);
+
+	if (str == NULL)
+		return write(1, "(null)", 6);
+
+	while (str[i] != '\0')
+	{
+		if (is_printable(str[i]))
+			buffer[i + offset] = str[i];
+		else
+			offset += append_hexa_code(str[i], buffer, i + offset);
+
+		i++;
+	}
+
+	buffer[i + offset] = '\0';
+
+	return (write(1, buffer, i + offset));
 }

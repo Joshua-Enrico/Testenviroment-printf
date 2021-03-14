@@ -1,5 +1,11 @@
 #include "holberton.h"
 
+/**
+ * len - Caluclates the lenght of a string
+ * @str: String
+ * 
+ * Return: Length of str
+ */
 int len(char *str)
 {
 	int length = 0;
@@ -10,26 +16,39 @@ int len(char *str)
 	return length;
 }
 
-int count_digits(unsigned int num)
+/**
+ * is_printable - Evaluates if a char is printable
+ * @c: Char to be evaluated
+ * 
+ * Return: 1 if c is printable, 0 otherwise
+ */
+int is_printable(char c)
 {
-	int digits = 0;
-
-	if (num == 0)
+	if (c >= 32 && c < 127)
 		return (1);
 
-	for (digits = 0; num > 0 ; digits++)
-		num /= 10;
-
-	return (digits);
+	return (0);
 }
 
-unsigned int ten_to_power(int power)
+/**
+ * append_hexa_code - Append ascci in hexadecimal code to buffer
+ * @buffer: Array of chars
+ * @i: Index at which to start appending
+ * 
+ * Return: Always 3
+ */
+int append_hexa_code(char ascii_code, char buffer[], int i)
 {
-	int i;
-	unsigned int res = 1;
+	char map_to[] = "0123456789ABCDEF";
+	/* The hexa format code is always 2 digits long */
+	if (ascii_code < 0)
+		ascii_code *= -1;
 
-	for (i = 0; i < power; i++)
-		res *= 10;
+	buffer[i++] = '\\';
+	buffer[i++] = 'x';
 
-	return res;
+	buffer[i++] = map_to[ascii_code / 16];
+	buffer[i] = map_to[ascii_code % 16];
+
+	return (3);
 }

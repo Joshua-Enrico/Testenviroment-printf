@@ -19,6 +19,7 @@ int handle_print(char fmt, va_list list)
         {'o', print_octal},
         {'x', print_hexadecimal},
         {'X', print_hexa_upper},
+        {'S', print_non_printable},
         {'\0', NULL}
     };
 

@@ -27,32 +27,21 @@ int print_string(va_list types, char buffer[]);
 int print_percent(va_list types, char buffer[]);
 
 /* Functions to print numbers */
-
 int print_int(va_list types, char buffer[]);
-
-/* funciones avanzadas*/
+int print_binary(va_list types, char buffer[]);
 int print_unsigned(va_list types, char buffer[]);
 int print_octal(va_list types, char buffer[]);
 int print_hexadecimal(va_list types, char buffer[]);
 int print_hexa_upper(va_list types, char buffer[]);
-int print_hexa(va_list list, char map_to[], char buffer[]);
-/*int print_binary(va_list types);
+int print_hexa(va_list types, char map_to[], char buffer[]);
 
-int print_unsigned(va_list types);
-int print_unsgd_octal(va_list types);
-int print_hexadecimal(va_list types);
-int print_hexa_upper(va_list types);
-*/
-int print_binary(va_list types, char buffer[]);
-
-
-
-
+/* Function to print non printable characters */
+int print_non_printable(va_list types, char buffer[]);
 
 
 /****************** UTILS ******************/
 int len(char *);
-int count_digits(unsigned int);
-unsigned int ten_to_power(int);
+int is_printable(char);
+int append_hexa_code(char , char[], int);
 
 #endif /* HOL_H */
