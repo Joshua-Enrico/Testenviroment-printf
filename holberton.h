@@ -28,6 +28,10 @@ int print_percent(va_list types);
 
 int print_int(va_list types);
 
+int print_unsigned(va_list types);
+int print_octal(va_list types);
+int print_hexadecimal(va_list types);
+int print_hexa_upper(va_list types);
 /*int print_binary(va_list types);
 
 int print_unsigned(va_list types);
@@ -38,5 +42,7 @@ int print_hexa_upper(va_list types);
 
 /****************** UTILS ******************/
 int len(char *);
+int count_digits(unsigned int);
+unsigned int ten_to_power(int);
 
 #endif /* HOL_H */

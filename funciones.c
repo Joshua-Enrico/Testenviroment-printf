@@ -88,16 +88,37 @@ int print_binary(va_list types)
 {
 }
 
-int print_unsigned(va_list types)
+int print_unsigned(va_list list)
 {
+    int digits, divisor;
+    char cnum = '0';
+    unsigned int num = va_arg(list, unsigned int);
 
+    digits = count_digits(num);
+    divisor = ten_to_power(digits - 1);
+
+    while (divisor > 0)
+    {
+        cnum = (num / divisor) + '0';
+        write(1, &cnum, 1);
+        num %= divisor;
+        divisor /= 10;
+    }
+
+    return (digits);
 }
-int print_unsgd_octal(va_list types)
+
+int print_octal(va_list types)
 {
+    return (0);
 }
-int print_unsgd_hexadecimal(va_list types)
+
+int print_hexadecimal(va_list types)
 {
+    return (0);
 }
+
 int print_hexa_upper(va_list types)
 {
+    return (0);
 }

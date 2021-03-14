@@ -11,10 +11,11 @@ int handle_print(char fmt, va_list list)
         {'c', print_char},
         {'s', print_string},
         {'%', print_percent},
-        /*{'i', print_int},
+        {'i', print_int},
         {'d', print_int},
+        {'u', print_unsigned},
         {'x', print_hexadecimal},
-        {'X', print_hexa_upper},*/
+        {'X', print_hexa_upper},
         {'\0', NULL}
     };
 
@@ -36,7 +37,6 @@ int handle_print(char fmt, va_list list)
         write(1, &fmt, 1);
         return 2;
     }
-
 
     return printed_chars;
 }
