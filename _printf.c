@@ -9,10 +9,13 @@ int _printf(const char *format, ...)
 
     for (i = 0; format && format[i] != '\0'; i++)
     {
-        while (format[i] != '%')
-            _putchar(format[i++]), printed_chars++;
-
-        printed_chars += handle_print(format[++i], list);
+        if (format[i] != '%')
+        {
+            write(1, &format[i], 1);
+            printed_chars++;
+        }
+        else
+            printed_chars += handle_print(format[++i], list);
     }
 
     va_end(list);

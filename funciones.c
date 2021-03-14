@@ -1,6 +1,7 @@
 
 #include "holberton.h"
 
+<<<<<<< HEAD
 /**
  *op_c - Entry point 
  *@op_d: va_list printf function
@@ -8,8 +9,14 @@
  */
 
 int print_char(va_list types) /*char*/
+=======
+int print_char(va_list list)
+>>>>>>> e9c28f1a4d7be6ed01fc9fa31597d2dac3ca4a1a
 {
+	char c = va_arg(list, int);
+	write(1, &c, 1);
 
+<<<<<<< HEAD
     _putchar(va_arg(types, int));
 
     return (1); /*creo que retorna 1 , hasta ahora funciona*/
@@ -27,22 +34,32 @@ int print_string(va_list types)
     if (x == NULL) /*pongo NULL ya por costumbre*/
     {
         x = "(null)"; /* tambien lo pongo por costumbre*/
+=======
+	return (0);
+}
 
-        /* aqui recorro el string  "X" si no me equivoco, ya no se si es string o arreglo ,  y lo almaceno en "contador"*/
+int print_string(va_list list)
+{
+	char *str = va_arg(list, char *);
+>>>>>>> e9c28f1a4d7be6ed01fc9fa31597d2dac3ca4a1a
 
+    if (str == NULL)
+        str == "(null)";
+
+<<<<<<< HEAD
         while (x[contador] != '\0')
         {
             _putchar(x[contador]);
             contador++;
             return (contador); /* retornamos para que se siga imprimiento lo restante en el main*/
+=======
+	write(1, str, len(str));
+>>>>>>> e9c28f1a4d7be6ed01fc9fa31597d2dac3ca4a1a
 
-            /*caso de prueba */
-            /*_printf("String:[%s]\n", "I am a string !");
-            printf("String:[%s]\n", "I am a string !");*/
-        }
-    }
+	return (0);
 }
 
+<<<<<<< HEAD
 int print_percent(__attribute__((unsused)) va_list types) /** aqui estoy viendo que se usa __attribute__*/
 {
     _putchar('%');
@@ -118,3 +135,12 @@ int print_unsgd_hexadecimal(va_list types)
 int print_hexa_upper(va_list types)
 {
 }
+=======
+int print_percent(va_list types)
+{
+	char p = '%';
+	write(1, &p, 1);
+
+	return 1;
+}
+>>>>>>> e9c28f1a4d7be6ed01fc9fa31597d2dac3ca4a1a
