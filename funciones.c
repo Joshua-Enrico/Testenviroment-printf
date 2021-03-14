@@ -1,32 +1,39 @@
-
 #include "holberton.h"
+#include <stdio.h>
 
+/**
+ * print_char - Prints a char
+ * @list: List of arguments
+ */
 int print_char(va_list list)
 {
 	char c = va_arg(list, int);
-	write(1, &c, 1);
-
-    return (1);
+	return write(1, &c, 1);
 }
 
+/**
+ * print_string - Prints a string
+ * @list: List of arguments
+ */
 int print_string(va_list list)
 {
+    int length = 0;
 	char *str = va_arg(list, char *);
 
     if (str == NULL)
-        str == "(null)";
+        return write(1, "(null)", 6);
 
-	write(1, str, len(str));
-
-	return (0);
+	return write(1, str, len(str));
 }
 
-int print_percent(va_list types)
+/**
+ * print_percent - Prints a percent sign
+ * @list: List of arguments
+ */
+int print_percent(va_list list)
 {
 	char p = '%';
-	write(1, &p, 1);
-
-	return (1);
+	return write(1, &p, 1);
 }
 
 int print_int(va_list types)

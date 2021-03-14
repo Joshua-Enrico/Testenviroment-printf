@@ -17,9 +17,7 @@ struct fmt
 
 typedef struct fmt fmt_t;
 
-int _putchar(char a);
-
-int _printf_self(const char *format, ...);
+int _printf(const char *format, ...);
 
 /* Funtions to print chars and strings */
 int print_char(va_list types);

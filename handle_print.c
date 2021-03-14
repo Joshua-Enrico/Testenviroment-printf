@@ -6,7 +6,7 @@
  */
 int handle_print(char fmt, va_list list)
 {
-    int i, printed_chars = 0;
+    int i, printed_chars = -1;
     fmt_t fmt_types[] = {
         {'c', print_char},
         {'s', print_string},
@@ -15,14 +15,28 @@ int handle_print(char fmt, va_list list)
         {'d', print_int},
         {'x', print_hexadecimal},
         {'X', print_hexa_upper},*/
-        {'\0', 0}
+        {'\0', NULL}
     };
-
-    // printf("\nreceived: %c\n", fmt);
 
     for (i = 0; fmt_types[i].fmt != '\0'; i++)
         if (fmt == fmt_types[i].fmt)
-            return fmt_types[i].fn(list);
+        {
+            printed_chars = fmt_types[i].fn(list);
+            break;
+        }
 
-    return 0;
+    if(printed_chars == 0)
+        if (fmt == 's')
+            return (1);
+
+    /* UNKNOWN */
+    if (fmt_types[i].fmt == '\0')
+    {
+        write(1, "%%", 1);
+        write(1, &fmt, 1);
+        return 2;
+    }
+
+
+    return printed_chars;
 }
