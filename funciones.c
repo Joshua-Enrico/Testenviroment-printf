@@ -5,6 +5,8 @@ int print_char(va_list list)
 {
 	char c = va_arg(list, int);
 	write(1, &c, 1);
+
+    return (1);
 }
 
 int print_string(va_list list)
@@ -24,7 +26,7 @@ int print_percent(va_list types)
 	char p = '%';
 	write(1, &p, 1);
 
-	return 1;
+	return (1);
 }
 
 int print_int(va_list types)
