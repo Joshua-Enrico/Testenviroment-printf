@@ -1,9 +1,8 @@
-#include "holberton.h"
-
+#include "../holberton.h"
+#include <stdio.h>
 /**
- * main - Entry point
- *
- * Return: Always 0
+ * Command to run test:
+ * gcc ./_printf.c handle_print.c funciones.c utils.c  tests/0_unsigned_binary.c
  */
 int main(void)
 {
