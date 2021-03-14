@@ -17,7 +17,6 @@ int print_char(va_list list, char buffer[])
  */
 int print_string(va_list list, char buffer[])
 {
-  int length = 0;
 	char *str = va_arg(list, char *);
 
 	if (str == NULL)
@@ -32,8 +31,7 @@ int print_string(va_list list, char buffer[])
  */
 int print_percent(va_list list, char buffer[])
 {
-	char p = '%';
-	return write(1, &p, 1);
+	return write(1, "%%", 1);
 }
 
 int print_int(va_list types, char buffer[])
@@ -203,7 +201,47 @@ int print_hexa(va_list list, char map_to[], char buffer[])
 	return (write(1, &buffer[i], BUFF_SIZE - i) - 1);
 }
 
+/************************* PRINT POINTER *************************/
+/**
+ * print_pointer - Prints the value of a pointer variable
+ * @list: List of arguments
+ * @buffer: Buffer array to handle print
+ * 
+ * Return: Number of chars printed
+ */
+int print_pointer(va_list list, char buffer[])
+{
+	int i = BUFF_SIZE - 2;
+	unsigned long num_addrs;
+	char map_to[] = "0123456789abcdef";
+	void *addrs = va_arg(list, void *);
+	
+	if (addrs == NULL)
+		return write(1, "(nil)", 5);
+	
+	buffer[BUFF_SIZE - 1] = '\0';
+	num_addrs = (unsigned long) addrs;
+
+	while (num_addrs > 0)
+	{
+		buffer[i--] = map_to[num_addrs % 16];
+		num_addrs /= 16;
+	}
+	
+	buffer[i--] = 'x';
+	buffer[i] = '0';
+
+	return (write(1, &buffer[i], BUFF_SIZE - i) - 1);
+}
+
 /************************* PRINT NON PRINTABLE *************************/
+/**
+ * print_non_printable - Prints ascii codes in hexa of non printable chars
+ * @list: List of arguments
+ * @buffer: Buffer array to handle print
+ * 
+ * Return: Number of chars printed
+ */
 int print_non_printable(va_list list, char buffer[])
 {
 	int i = 0, offset = 0;

@@ -38,6 +38,9 @@ int print_hexa(va_list types, char map_to[], char buffer[]);
 /* Function to print non printable characters */
 int print_non_printable(va_list types, char buffer[]);
 
+/* Funcion to print memory address */
+int print_pointer(va_list types, char buffer[]);
+
 
 /****************** UTILS ******************/
 int len(char *);
