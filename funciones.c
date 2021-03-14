@@ -110,6 +110,10 @@ int print_binary(va_list types)
 	return (count);
 }
 
+/**
+ * print_unsigned - Prints an unsigned number
+ * @list: Lista of arguments
+ */
 int print_unsigned(va_list list)
 {
     int digits, divisor;
@@ -130,17 +134,48 @@ int print_unsigned(va_list list)
     return (digits);
 }
 
-int print_octal(va_list types)
+/**
+ * print_unsigned - Prints an unsigned number in octal notation
+ * @list: Lista of arguments
+ */
+int print_octal(va_list list)
+{
+	int i = 29;
+	char num_octal_c[30];
+	unsigned int num = va_arg(list, unsigned int);
+
+	if (num == 0)
+		return write(1, "0", 1);
+
+	num_octal_c[30] = '\0';
+
+	while (num > 0)
+	{
+		num_octal_c[i--] = (num % 8) + '0';
+		num /= 8;
+	}
+	
+	i++;
+
+	write(1, &num_octal_c[i], 30 - i);
+
+	return (30 - i);
+}
+
+/**
+ * print_unsigned - Prints an unsigned number in hexadecimal notation
+ * @list: Lista of arguments
+ */
+int print_hexadecimal(va_list list)
 {
     return (0);
 }
 
-int print_hexadecimal(va_list types)
-{
-    return (0);
-}
-
-int print_hexa_upper(va_list types)
+/**
+ * print_unsigned - Prints an unsigned number in upper hexadecimal notation
+ * @list: Lista of arguments
+ */
+int print_hexa_upper(va_list list)
 {
     return (0);
 }

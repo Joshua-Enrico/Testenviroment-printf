@@ -10,7 +10,7 @@ int len(char *str)
 	return length;
 }
 
-int count_digits(unsigned long num)
+int count_digits(unsigned int num)
 {
 	int digits = 0;
 

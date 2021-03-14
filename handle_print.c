@@ -14,6 +14,7 @@ int handle_print(char fmt, va_list list)
         {'i', print_int},
         {'d', print_int},
         {'u', print_unsigned},
+        {'o', print_octal},
         {'x', print_hexadecimal},
         {'X', print_hexa_upper},
         /*{'x', print_hexadecimal},

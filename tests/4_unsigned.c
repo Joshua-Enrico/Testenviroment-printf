@@ -10,25 +10,47 @@ int main(void)
 {
 	unsigned int ui;
 	ui = (unsigned int)INT_MAX + 1024;
-	int len;
+	int len1, len2;
 
-	len = printf("Unsigned:[%u]\n", ui);
-	printf(" => %d\n", len);
-	len = _printf("Unsigned:[%u]\n", ui);
-	printf(" => %d\n", len);
+	len1 = printf("Unsigned:[%u]", ui);
+	printf(" => %d\n", len1);
+	len2 = _printf("Unsigned:[%u]", ui);
+	printf(" => %d\n", len2);
+	printf("Correct: %d\n\n", len1 == len2);
 
-	len = printf("Unsigned:[%u]\n", -12932);
-	printf(" => %d\n", len);
-	len = _printf("Unsigned:[%u]\n", -12932);
-	printf(" => %d\n", len);
+	len1 = printf("Unsigned:[%u]", -12932);
+	printf(" => %d\n", len1);
+	len2 = _printf("Unsigned:[%u]", -12932);
+	printf(" => %d\n", len2);
+	printf("Correct: %d\n\n", len1 == len2);
 
-	len = printf("Unsigned:[%u]\n", 10000000);
-	printf(" => %d\n", len);
-	len = _printf("Unsigned:[%u]\n", 10000000);
-	printf(" => %d\n", len);
+	len1 = printf("Unsigned:[%u]", 10000000);
+	printf(" => %d\n", len1);
+	len2 = _printf("Unsigned:[%u]", 10000000);
+	printf(" => %d\n", len2);
+	printf("Correct: %d\n\n", len1 == len2);
 
-	len = printf("Unsigned:[%u]\n", -999999999999000000000000000);
-	printf(" => %d\n", len);
-	len = _printf("Unsigned:[%u]\n", -999999999999000000000000000);
-	printf(" => %d\n", len);
+	len1 = printf("Unsigned:[%u]", -999999999999000000000000000);
+	printf(" => %d\n", len1);
+	len2 = _printf("Unsigned:[%u]", -999999999999000000000000000);
+	printf(" => %d\n", len2);
+	printf("Correct: %d\n\n", len1 == len2);
+
+	len1 = printf("Unsigned:[%u]", 9223372036854775807);
+	printf(" => %d\n", len1);
+	len2 = _printf("Unsigned:[%u]", 9223372036854775807);
+	printf(" => %d\n", len2);
+	printf("Correct: %d\n\n", len1 == len2);
+	
+	len1 = printf("Unsigned:[%u]", -9223372036854775808);
+	printf(" => %d\n", len1);
+	len2 = _printf("Unsigned:[%u]", -9223372036854775808);
+	printf(" => %d\n", len2);
+	printf("Correct: %d\n\n", len1 == len2);
+
+	len1 = printf("Unsigned:[%u]", 0);
+	printf(" => %d\n", len1);
+	len2 = _printf("Unsigned:[%u]", 0);
+	printf(" => %d\n", len2);
+	printf("Correct: %d\n\n", len1 == len2);
 }
