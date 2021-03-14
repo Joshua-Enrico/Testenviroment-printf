@@ -1,49 +1,20 @@
 
 #include "holberton.h"
 
-<<<<<<< HEAD
-/**
- *op_c - Entry point 
- *@op_d: va_list printf function
- *retur: aun estoy por ver que retonrna, 
- */
-
-int print_char(va_list types) /*char*/
-=======
 int print_char(va_list list)
->>>>>>> 1220d5fba64f21a48c3d78ef9c160d2719e72894
 {
-	char c = va_arg(types, int);
+	char c = va_arg(list, int);
 	write(1, &c, 1);
-<<<<<<< HEAD
-
-    return (1); /*creo que retorna 1 , hasta ahora funciona*/
-
-    /*caso de prueba*/
-    /*_printf("Character:[%c]\n", 'H');
-    printf("Character:[%c]\n", 'H');*/
-}
-
-int print_string(va_list types)
-{
-   	char *str = va_arg(types, char *);
-=======
 }
 
 int print_string(va_list list)
 {
 	char *str = va_arg(list, char *);
->>>>>>> 1220d5fba64f21a48c3d78ef9c160d2719e72894
 
     if (str == NULL)
         str == "(null)";
 
 	write(1, str, len(str));
-<<<<<<< HEAD
-
-	return (0);
-=======
->>>>>>> 1220d5fba64f21a48c3d78ef9c160d2719e72894
 
 	return (0);
 }
@@ -120,8 +91,4 @@ int print_unsgd_hexadecimal(va_list types)
 }
 int print_hexa_upper(va_list types)
 {
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 1220d5fba64f21a48c3d78ef9c160d2719e72894
