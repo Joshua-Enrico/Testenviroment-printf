@@ -31,22 +31,20 @@ int print_percent(va_list types)
 
 int print_int(va_list types)
 {
-    /*caso de prueba*/
-    /*_printf("Negative:[%d]\n", -762534);
-    printf("Negative:[%d]\n", -762534);*/
-
+    
 	unsigned int g, f, c = 0, i = 0;
 	unsigned long int b = 1;
 	int num = va_arg(types, int);
 
 	if (num == 0)
 	{
-		_putchar(num + '0');
+        
+		write(1, &num, 1);
 		return (i + 1);
 	}
 	if (num < 0)
 	{
-		_putchar('-');
+		write(1 , '-', 1);
 		g = num * (-1);
 	}
 	else
@@ -65,7 +63,9 @@ int print_int(va_list types)
 	i = c;
 	while (c != 0)
 	{
-		_putchar((f / b) + '0');
+        char ch = (f / b) + '0';
+  write(1, &ch, 1);
+
 		f = f % b;
 		b = b / 10;
 		c--;
