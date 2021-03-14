@@ -28,6 +28,7 @@ int print_percent(va_list types);
 
 int print_int(va_list types);
 
+/* funciones avanzadas*/
 int print_unsigned(va_list types);
 int print_octal(va_list types);
 int print_hexadecimal(va_list types);
@@ -41,6 +42,11 @@ int print_hexadecimal(va_list types);
 int print_hexa_upper(va_list types);
 */
 int print_binary(va_list types);
+
+
+
+
+
 
 /****************** UTILS ******************/
 int len(char *);
