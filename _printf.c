@@ -5,6 +5,7 @@ int _printf(const char *format, ...)
     int i, printed_chars = 0;
     int flags, width;
     va_list list;
+    char buffer[BUFF_SIZE];
 
     va_start(list, format);
 
@@ -18,11 +19,11 @@ int _printf(const char *format, ...)
         else
         {
             flags = get_flags(format, &i);
-            // width = get_with();
+            width = get_width(format, &i);
             // precision = handle_precision();
             // size = handle_size();
             /* Last one handles type and print */
-            printed_chars += handle_print(format[++i], list, flags);
+            printed_chars += handle_print(format[++i], list, buffer, flags, width);
         }
     }
 

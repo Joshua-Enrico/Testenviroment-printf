@@ -1,5 +1,4 @@
 #include "holberton.h"
-#include <stdio.h>
 
 /************************* PRINT CHAR *************************/
 
@@ -10,10 +9,11 @@
  *
  * Return: Number of chars printed
  */
-int print_char(va_list types, char buffer[], int flags)
+int print_char(va_list types, char buffer[], int flags, int width)
 {
 	char c = va_arg(types, int);
-	return (write(1, &c, 1));
+
+	return handle_write_char(c, buffer, flags, width);
 }
 /************************* PRINT A STRING *************************/
 /**
@@ -23,14 +23,37 @@ int print_char(va_list types, char buffer[], int flags)
  * 
  * Return: Number of chars printed
  */
-int print_string(va_list types, char buffer[], int flags)
+int print_string(va_list types, char buffer[], int flags, int width)
 {
+	int length = 0, i = 0;
 	char *str = va_arg(types, char *);
 
 	if (str == NULL)
-		return write(1, "(null)", 6);
+		str = "(null)";
 
-	return write(1, str, len(str));
+	for (; str[length] != '\0'; length++)
+		buffer[length] = str[length];
+
+	buffer[length] = '\0';
+	
+	if (width > length)
+	{
+		buffer[BUFF_SIZE - 1] = '\0';
+		for (i = 0; i < width - length; i++)
+			buffer[BUFF_SIZE - i - 2] = ' ';
+		
+		if (flags & F_MINUS)
+			return (write(1, &buffer[0], length) +
+				write(1, &buffer[BUFF_SIZE - i - 1], width - length));
+		else
+			return (write(1, &buffer[BUFF_SIZE - i - 1], width - length) +
+				write(1, &buffer[0], length));
+	}
+
+	/* HANDLE SPECIAL CASES WHEN PRINTING STR*/
+	/* Pending ...... */
+
+	return write(1, &buffer[0], length);
 }
 /************************* PRINT PERCENT SIGN *************************/
 /**
@@ -40,14 +63,14 @@ int print_string(va_list types, char buffer[], int flags)
  * 
  * Return: Number of chars printed
  */
-int print_percent(va_list types, char buffer[], int flags)
+int print_percent(va_list types, char buffer[], int flags, int width)
 {
 	return write(1, "%%", 1);
 }
 
-int print_int(va_list types, char buffer[], int flags)
+int print_int(va_list types, char buffer[], int flags, int width)
 {
-	int i = BUFF_SIZE - 2;
+	int length = 0, i = BUFF_SIZE - 2;
 	int is_negative = 0;
 	int n = va_arg(types, int);
 	unsigned int num;
@@ -71,16 +94,12 @@ int print_int(va_list types, char buffer[], int flags)
 		num /= 10;
 	}
 
-	if (is_negative)
-		buffer[i--] = '-';
-	else if (flags & F_PLUS)
-		buffer[i--] = '+';
-	else if (flags & F_SPACE)
-		buffer[i--] = ' ';
-
 	i++;
 
-	return (write(1, &buffer[i], BUFF_SIZE - i) - 1);
+	// length = BUFF_SIZE - i;
+
+	// return (write(1, &buffer[i], length) - 1);
+	return write_number(is_negative, i, buffer, flags, width);
 }
 
 /************************* PRINT BINARY *************************/
@@ -91,7 +110,7 @@ int print_int(va_list types, char buffer[], int flags)
  * 
  * Return: Numbers of char printed.
  */
-int print_binary(va_list types, char buffer[], int flags)
+int print_binary(va_list types, char buffer[], int flags, int width)
 {
 	unsigned int n, m, i, sum;
 	unsigned int a[32];
@@ -126,7 +145,7 @@ int print_binary(va_list types, char buffer[], int flags)
  * 
  * Return: Number of chars printed
  */
-int print_unsigned(va_list types, char buffer[], int flags)
+int print_unsigned(va_list types, char buffer[], int flags, int width)
 {
 	int i = BUFF_SIZE - 2;
 	unsigned int num = va_arg(types, unsigned int);
@@ -155,7 +174,7 @@ int print_unsigned(va_list types, char buffer[], int flags)
  * @buffer: Buffer array to handle print
  * Return: Number of chars printed
  */
-int print_octal(va_list types, char buffer[], int flags)
+int print_octal(va_list types, char buffer[], int flags, int width)
 {
 	int i = BUFF_SIZE - 2;
 	unsigned int num = va_arg(types, unsigned int);
@@ -188,9 +207,9 @@ int print_octal(va_list types, char buffer[], int flags)
  * 
  * Return: Number of chars printed
  */
-int print_hexadecimal(va_list types, char buffer[], int flags)
+int print_hexadecimal(va_list types, char buffer[], int flags, int width)
 {
-	return print_hexa(types, "0123456789abcdef", buffer, flags, 'x');
+	return print_hexa(types, "0123456789abcdef", buffer, flags, 'x', width);
 }
 
 
@@ -202,9 +221,9 @@ int print_hexadecimal(va_list types, char buffer[], int flags)
  * 
  * Return: Number of chars printed
  */
-int print_hexa_upper(va_list types, char buffer[], int flags)
+int print_hexa_upper(va_list types, char buffer[], int flags, int width)
 {
-	return print_hexa(types, "0123456789ABCDEF", buffer, flags, 'X');
+	return print_hexa(types, "0123456789ABCDEF", buffer, flags, 'X', width);
 }
 
 
@@ -217,7 +236,7 @@ int print_hexa_upper(va_list types, char buffer[], int flags)
  * 
  * Return: Number of chars printed
  */
-int print_hexa(va_list types, char map_to[], char buffer[], int flags, char flag_ch)
+int print_hexa(va_list types, char map_to[], char buffer[], int flags, char flag_ch, int width)
 {
 	int i = BUFF_SIZE - 2;
 	unsigned int num = va_arg(types, unsigned int);
@@ -252,7 +271,7 @@ int print_hexa(va_list types, char map_to[], char buffer[], int flags, char flag
  * 
  * Return: Number of chars printed
  */
-int print_pointer(va_list types, char buffer[], int flags)
+int print_pointer(va_list types, char buffer[], int flags, int width)
 {
 	int i = BUFF_SIZE - 2;
 	unsigned long num_addrs;
@@ -292,7 +311,7 @@ int print_pointer(va_list types, char buffer[], int flags)
  * 
  * Return: Number of chars printed
  */
-int print_non_printable(va_list types, char buffer[], int flags)
+int print_non_printable(va_list types, char buffer[], int flags, int width)
 {
 	int i = 0, offset = 0;
 	char *str = va_arg(types, char *);
@@ -324,7 +343,7 @@ int print_non_printable(va_list types, char buffer[], int flags)
  * Return: Numbers of chars printed
  */
 
-int print_reverse(va_list types, char buffer[], int flags)
+int print_reverse(va_list types, char buffer[], int flags, int width)
 {
 	char *str;
 	int i, count = 0;
@@ -353,7 +372,7 @@ int print_reverse(va_list types, char buffer[], int flags)
  * 
  * Return: Numbers of chars printed
  */
-int print_rot13string(va_list types, char buffer [], int flags)
+int print_rot13string(va_list types, char buffer [], int flags, int width)
 {
     char x;
     char *str;

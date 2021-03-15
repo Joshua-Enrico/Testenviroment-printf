@@ -4,7 +4,7 @@
 
 /**
  * Command to run test:
- * gcc ./tests/8_flag_chars.c _printf.c handle_print.c get_flags.c functions.c utils.c
+ * gcc ./tests/8_flag_chars.c _printf.c handle_print.c get_flags.c get_width.c functions.c utils.c
  */
 int main(void)
 {
@@ -17,9 +17,9 @@ int main(void)
 	printf(" => %d\n", len2);
 	printf("Correct: %d\n\n", len1 == len2);
 
-	len1 = printf("Flag: [%+d]", -231);
+	len1 = printf("Flag: [%+ d]", -231);
 	printf(" => %d\n", len1);
-	len2 = _printf("Flag: [%+d]", -231);
+	len2 = _printf("Flag: [%+ d]", -231);
 	printf(" => %d\n", len2);
 	printf("Correct: %d\n\n", len1 == len2);
 
