@@ -3,7 +3,7 @@
 
 /**
  * Command to run test:
- * gcc ./tests/0_strings.c _printf.c handle_print.c  functions.c utils.c get_flags.c
+ * gcc ./tests/0_strings.c _printf.c handle_print.c  functions.c functions1.c functions2.c utils.c get_flags.c
  */
 int main(void)
 {

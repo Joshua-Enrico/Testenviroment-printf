@@ -2,7 +2,7 @@
 #include <stdio.h>
 /**
  * Command to run test:
- * gcc ./_printf.c handle_print.c functions.c utils.c  tests/0_unsigned_binary.c get_flags.c
+ * gcc ./_printf.c handle_print.c functions.c functions1.c functions2.c utils.c  tests/0_unsigned_binary.c get_flags.c
  */
 int main(void)
 {

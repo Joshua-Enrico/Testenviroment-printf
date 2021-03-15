@@ -2,9 +2,11 @@
 #include <stdio.h>
 
 /**
- * Command to run test:
- * gcc ./tests/0_printf_strings.c _printf.c handle_print.c functions.c utils.c get_flags.c
+ * main - tests
+ * Command to run test
+ * Return: nothing
  */
+/*gcc ./tests/0_printf_strings.c _printf.c handle_print.c functions.c functions1.c functions2.c utils.c get_flags.c*/
 int main(void)
 {
 	int len1, len2;
@@ -15,11 +17,6 @@ int main(void)
 	printf(" => %d\n", len2);
 	printf("Correct: %d\n\n", len1 == len2);
 
-	len1 = printf("Hello %s", "World!");
-	printf(" => %d\n", len1);
-	len2 = _printf("Hello %s", "World!");
-	printf(" => %d\n", len2);
-	printf("Correct: %d\n\n", len1 == len2);
 
 	len1 = printf("Hello %s ... %s", "...");
 	printf(" => %d\n", len1);
@@ -33,9 +30,7 @@ int main(void)
 	printf(" => %d\n", len2);
 	printf("Correct: %d\n\n", len1 == len2);
 
-	len1 = printf("Hello %s School... %s", "%%%", NULL);
-	printf(" => %d\n", len1);
-	len2 = _printf("Hello %s School... %s", "%%%", NULL);
+
 	printf(" => %d\n", len2);
 	printf("Correct: %d\n\n", len1 == len2);
 
@@ -51,9 +46,4 @@ int main(void)
 	printf(" => %d\n", len2);
 	printf("Correct: %d\n\n", len1 == len2);
 
-	len1 = printf("Unknown:[%r]");
-	printf(" => %d\n", len1);
-	len2 = _printf("Unknown:[%r]");
-	printf(" => %d\n", len2);
-	printf("Correct: %d\n\n", len1 == len2);
 }

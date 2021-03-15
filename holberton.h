@@ -13,10 +13,10 @@
 #define F_SPACE 16
 
 /**
- * struct op - Struct op
+ * struct fmt - Struct op
  *
- * @op: The format
- * @f: The function associated
+ * @fmt: The format
+ * @fn: The function associated
  */
 struct fmt
 {
@@ -24,6 +24,13 @@ struct fmt
 	int (*fn)(va_list, char[], int);
 };
 
+
+/**
+ * struct fmt - Struct op
+ *
+ * @fmt: The format
+ * @fm_t: The function associated
+ */
 typedef struct fmt fmt_t;
 
 int _printf(const char *format, ...);
@@ -42,7 +49,8 @@ int print_unsigned(va_list types, char buffer[], int flags);
 int print_octal(va_list types, char buffer[], int flags);
 int print_hexadecimal(va_list types, char buffer[], int flags);
 int print_hexa_upper(va_list types, char buffer[], int flags);
-int print_hexa(va_list types, char map_to[], char buffer[], int flags, char flag_ch);
+int print_hexa(va_list types, char map_to[], char buffer[]
+, int flags, char flag_ch);
 
 /* Function to print non printable characters */
 int print_non_printable(va_list types, char buffer[], int flags);
@@ -63,6 +71,6 @@ int print_rot13string(va_list types, char buffer[], int flags);
 /****************** UTILS ******************/
 int len(char *);
 int is_printable(char);
-int append_hexa_code(char , char[], int);
+int append_hexa_code(char, char[], int);
 
 #endif /* HOL_H */
