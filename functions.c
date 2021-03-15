@@ -171,6 +171,9 @@ int print_octal(va_list types, char buffer[], int flags)
 		num /= 8;
 	}
 
+	if (flags & F_HASH)
+		buffer[i--] = '0';
+
 	i++;
 
 	return (write(1, &buffer[i], BUFF_SIZE - i) - 1);
@@ -187,7 +190,7 @@ int print_octal(va_list types, char buffer[], int flags)
  */
 int print_hexadecimal(va_list types, char buffer[], int flags)
 {
-	return print_hexa(types, "0123456789abcdef", buffer, flags);
+	return print_hexa(types, "0123456789abcdef", buffer, flags, 'x');
 }
 
 
@@ -201,7 +204,7 @@ int print_hexadecimal(va_list types, char buffer[], int flags)
  */
 int print_hexa_upper(va_list types, char buffer[], int flags)
 {
-	return print_hexa(types, "0123456789ABCDEF", buffer, flags);
+	return print_hexa(types, "0123456789ABCDEF", buffer, flags, 'X');
 }
 
 
@@ -214,7 +217,7 @@ int print_hexa_upper(va_list types, char buffer[], int flags)
  * 
  * Return: Number of chars printed
  */
-int print_hexa(va_list types, char map_to[], char buffer[], int flags)
+int print_hexa(va_list types, char map_to[], char buffer[], int flags, char flag_ch)
 {
 	int i = BUFF_SIZE - 2;
 	unsigned int num = va_arg(types, unsigned int);
@@ -228,6 +231,12 @@ int print_hexa(va_list types, char map_to[], char buffer[], int flags)
 	{
 		buffer[i--] = map_to[num % 16];
 		num /= 16;
+	}
+
+	if (flags & F_HASH)
+	{
+		buffer[i--] = flag_ch;
+		buffer[i--] = '0';
 	}
 
 	i++;
@@ -263,7 +272,14 @@ int print_pointer(va_list types, char buffer[], int flags)
 	}
 
 	buffer[i--] = 'x';
-	buffer[i] = '0';
+	buffer[i--] = '0';
+
+	if (flags & F_PLUS)
+		buffer[i--] = '+';
+	else if (flags & F_SPACE)
+		buffer[i--] = ' ';
+
+	i++;
 
 	return (write(1, &buffer[i], BUFF_SIZE - i) - 1);
 }
@@ -308,7 +324,7 @@ int print_non_printable(va_list types, char buffer[], int flags)
  * Return: Numbers of chars printed
  */
 
-int print_reverse(va_list types, char buffer[])
+int print_reverse(va_list types, char buffer[], int flags)
 {
 	char *str;
 	int i, count = 0;
@@ -337,7 +353,7 @@ int print_reverse(va_list types, char buffer[])
  * 
  * Return: Numbers of chars printed
  */
-int print_rot13string(va_list types, char buffer [])
+int print_rot13string(va_list types, char buffer [], int flags)
 {
     char x;
     char *str;

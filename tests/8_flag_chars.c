@@ -9,6 +9,7 @@
 int main(void)
 {
 	int len1, len2;
+	int addrs[1];
 
 	len1 = printf("Flag: [%+ d]", 1230);
 	printf(" => %d\n", len1);
@@ -37,6 +38,36 @@ int main(void)
 	len1 = printf("Flag: [% i]", -43);
 	printf(" => %d\n", len1);
 	len2 = _printf("Flag: [% i]", -43);
+	printf(" => %d\n", len2);
+	printf("Correct: %d\n\n", len1 == len2);
+
+	len1 = printf("Flag: [%+ p]", addrs);
+	printf(" => %d\n", len1);
+	len2 = _printf("Flag: [%+ p]", addrs);
+	printf(" => %d\n", len2);
+	printf("Correct: %d\n\n", len1 == len2);
+
+	len1 = printf("Flag: [% p]", addrs);
+	printf(" => %d\n", len1);
+	len2 = _printf("Flag: [% p]", addrs);
+	printf(" => %d\n", len2);
+	printf("Correct: %d\n\n", len1 == len2);
+
+	len1 = printf("Flag: [%#o]", 231);
+	printf(" => %d\n", len1);
+	len2 = _printf("Flag: [%#o]", 231);
+	printf(" => %d\n", len2);
+	printf("Correct: %d\n\n", len1 == len2);
+
+	len1 = printf("Flag: [%#x]", 231);
+	printf(" => %d\n", len1);
+	len2 = _printf("Flag: [%#x]", 231);
+	printf(" => %d\n", len2);
+	printf("Correct: %d\n\n", len1 == len2);
+
+	len1 = printf("Flag: [%#X]", 231);
+	printf(" => %d\n", len1);
+	len2 = _printf("Flag: [%#X]", 231);
 	printf(" => %d\n", len2);
 	printf("Correct: %d\n\n", len1 == len2);
 
