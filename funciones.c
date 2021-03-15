@@ -363,7 +363,7 @@ int print_rot13string(va_list types, char buffer [])
 
     str = va_arg(types, char *);
     if (str == NULL)
-        str = "(ahyy)";
+        str = "(AHYY)";
     for (i = 0; str[i]; i++)
     {
         for (j = 0; in[j]; j++)
