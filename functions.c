@@ -6,7 +6,7 @@
  * print_char - Prints a char
  * @types: Lista of arguments
  * @buffer: Buffer array to handle print
- *
+ * @flags:  Calculates active flags
  * Return: Number of chars printed
  */
 int print_char(va_list types, char buffer[], int flags, int width)
@@ -20,7 +20,7 @@ int print_char(va_list types, char buffer[], int flags, int width)
  * print_string - Prints a string
  * @types: Lista of arguments
  * @buffer: Buffer array to handle print
- * 
+ * @flags:  Calculates active flags
  * Return: Number of chars printed
  */
 int print_string(va_list types, char buffer[], int flags, int width)
@@ -60,12 +60,12 @@ int print_string(va_list types, char buffer[], int flags, int width)
  * print_percent - Prints a percent sign
  * @types: Lista of arguments
  * @buffer: Buffer array to handle print
- * 
+ * @flags:  Calculates active flags
  * Return: Number of chars printed
  */
 int print_percent(va_list types, char buffer[], int flags, int width)
 {
-	return write(1, "%%", 1);
+	return (write(1, "%%", 1));
 }
 
 int print_int(va_list types, char buffer[], int flags, int width)
@@ -76,7 +76,7 @@ int print_int(va_list types, char buffer[], int flags, int width)
 	unsigned int num;
 
 	if (n == 0)
-		return write(1, "0", 1);
+		return (write(1, "0", 1));
 
 	buffer[BUFF_SIZE - 1] = '\0';
 
@@ -107,7 +107,7 @@ int print_int(va_list types, char buffer[], int flags, int width)
  * print_binary - Prints an unsigned number
  * @types: Lista of arguments
  * @buffer: Buffer array to handle print
- * 
+ * @flags:  Calculates active flags
  * Return: Numbers of char printed.
  */
 int print_binary(va_list types, char buffer[], int flags, int width)
@@ -130,6 +130,7 @@ int print_binary(va_list types, char buffer[], int flags, int width)
 		if (sum || i == 31)
 		{
 			char z = '0' + a[i];
+
 			write(1, &z, 1);
 			count++;
 		}

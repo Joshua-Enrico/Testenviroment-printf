@@ -13,10 +13,10 @@
 #define F_SPACE 16
 
 /**
- * struct op - Struct op
+ * struct fmt - Struct op
  *
- * @op: The format
- * @f: The function associated
+ * @fmt: The format
+ * @fn: The function associated
  */
 struct fmt
 {
@@ -24,6 +24,13 @@ struct fmt
 	int (*fn)(va_list, char[], int, int);
 };
 
+
+/**
+ * struct fmt - Struct op
+ *
+ * @fmt: The format
+ * @fm_t: The function associated
+ */
 typedef struct fmt fmt_t;
 
 int _printf(const char *format, ...);

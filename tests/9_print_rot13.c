@@ -5,10 +5,8 @@
 
 /**
  * Command to run test:
- * gcc ./tests/9_print_rot13.c _printf.c handle_print.c funciones.c utils.c
+ * gcc ./tests/9_print_rot13.c _printf.c handle_print.c functions.c functions1.c functions2.c utils.c get_flags.c
  */
-
-
 
 int main(void)
 {
@@ -20,6 +18,7 @@ int main(void)
     len = printf("Let's try to printf a simple sentence.\n");
     _printf("Unknown:[%R]\n");
 
+    _printf("Unknown:[%R]\n", "HELLO WORLD");
    
     _printf("Unknown:[%R]\n", NULL);
 

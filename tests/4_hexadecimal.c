@@ -4,7 +4,7 @@
 
 /**
  * Command to run test:
- * gcc ./tests/4_hexadecimal.c _printf.c handle_print.c funciones.c utils.c
+ * gcc ./tests/4_hexadecimal.c _printf.c handle_print.c funciones.c functions1.c functions2.c utils.c
  */
 int main(void)
 {

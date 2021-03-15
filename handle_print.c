@@ -3,6 +3,8 @@
  * handle_print - Prints an argument based on its type
  * @fmt: Formatted string in which to print the arguments
  * @list: List of arguments to be printed
+ * @flags: Calculates active flags
+ * Return: 1 or 2;
  */
 int handle_print(char fmt, va_list list, char buffer[], int flags, int width)
 {
@@ -40,5 +42,5 @@ int handle_print(char fmt, va_list list, char buffer[], int flags, int width)
         return 2;
     }
 
-    return printed_chars;
+	return (printed_chars);
 }
