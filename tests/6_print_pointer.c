@@ -4,7 +4,7 @@
 
 /**
  * Command to run test:
- * gcc ./tests/6_print_pointer.c _printf.c handle_print.c funciones.c utils.c
+ * gcc ./tests/6_print_pointer.c _printf.c handle_print.c functions.c utils.c get_flags.c
  */
 int main(void)
 {
