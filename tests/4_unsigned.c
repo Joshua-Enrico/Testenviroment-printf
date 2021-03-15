@@ -4,7 +4,7 @@
 
 /**
  * Command to run test:
- * gcc ./tests/4_unsigned.c _printf.c handle_print.c functions.c functions1.c functions2.c utils.c get_flags.c
+ * gcc ./tests/4_unsigned.c _printf.c handle_print.c functions.c utils.c get_flags.c get_width.c write_handlers.c
  */
 int main(void)
 {
@@ -53,4 +53,34 @@ int main(void)
 	len2 = _printf("Unsigned:[%u]", 0);
 	printf(" => %d\n", len2);
 	printf("Correct: %d\n\n", len1 == len2);
+
+	len1 = printf("Unsigned:[%+-10u]", 231);
+	printf(" => %d\n", len1);
+	len2 = _printf("Unsigned:[%+-10u]", 231);
+	printf(" => %d\n", len2);
+	printf("Correct: %d\n\n", len1 == len2);
+
+	len1 = printf("Unsigned:[%+- 010u]", 231);
+	printf(" => %d\n", len1);
+	len2 = _printf("Unsigned:[%+- 010u]", 231);
+	printf(" => %d\n", len2);
+	printf("Correct: %d\n\n", len1 == len2);
+
+	len1 = printf("Unsigned:[% 010u]", 231);
+	printf(" => %d\n", len1);
+	len2 = _printf("Unsigned:[% 010u]", 231);
+	printf(" => %d\n", len2);
+	printf("Correct: %d\n\n", len1 == len2);
+
+	// len1 = printf("Unsigned:[%# -010o]", 231);
+	// printf(" => %d\n", len1);
+	// len2 = _printf("Unsigned:[%# -010o]", 231);
+	// printf(" => %d\n", len2);
+	// printf("Correct: %d\n\n", len1 == len2);
+
+	// len1 = printf("Unsigned:[% #010x]", 231);
+	// printf(" => %d\n", len1);
+	// len2 = _printf("Unsigned:[% #010x]", 231);
+	// printf(" => %d\n", len2);
+	// printf("Correct: %d\n\n", len1 == len2);
 }

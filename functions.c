@@ -95,10 +95,7 @@ int print_int(va_list types, char buffer[], int flags, int width)
 	}
 
 	i++;
-
-	// length = BUFF_SIZE - i;
-
-	// return (write(1, &buffer[i], length) - 1);
+	
 	return write_number(is_negative, i, buffer, flags, width);
 }
 
@@ -164,7 +161,8 @@ int print_unsigned(va_list types, char buffer[], int flags, int width)
 
 	i++;
 
-	return (write(1, &buffer[i], BUFF_SIZE - i) - 1);
+	return write_unsigned(0, i, buffer, flags, width);
+	// return (write(1, &buffer[i], BUFF_SIZE - i) - 1);
 }
 
 

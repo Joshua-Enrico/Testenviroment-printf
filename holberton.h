@@ -71,6 +71,7 @@ int print_rot13string(va_list types, char buffer[], int flags, int width);
 /* width handler */
 int handle_write_char(char c, char buffer[], int flags, int width);
 int write_number(int is_positive, int ind, char buffer[], int flags, int width);
+int write_unsigned(int is_negative, int ind, char buffer[], int flags, int width);
 
 /****************** UTILS ******************/
 int len(char *);
