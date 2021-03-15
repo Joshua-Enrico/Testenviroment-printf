@@ -68,7 +68,9 @@
 - [ ] All above options should work well together.
 ## File Descriptions
 * **_printf.c:** - contains the  fucntion ```_printf```, which uses the prototype ```int _printf(const char *format, ...);```. The format string is composed of zero or more directives. See ```man 3 printf``` for more detail. **_printf** will return the number of characters printed (excluding the null byte used to end output to strings) and will write output to **stdout**, the standard output stream.
-**_putchar.c** - contains the function ```_putchar```, which writes a character to stdout.
+
+**_putchar.c**  
+* contains the function ```_putchar```, which writes a character to stdout.
 
 * **holberton.h:** - contains all function prototypes used for ```_printf```.
 * **man_3_printf:** - manual page for the custom ```_printf``` function.
@@ -78,7 +80,7 @@
 * **utils.c:** - contains some necessary functionalities for ```_printf```.
 
 ## Directory Descriptions
-* **_putchar.c:** - contains the test cases for ```_printf```.
+* **tests** - contains the test cases for ```_printf```.
 
 ## Authors
 [Renato Leon](https://github.com/renatoleonholberton) | [Joshua Enrico](https://github.com/yoyogold-a11)
