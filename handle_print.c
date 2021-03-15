@@ -4,7 +4,7 @@
  * @fmt: Formatted string in which to print the arguments
  * @list: List of arguments to be printed
  */
-int handle_print(char fmt, va_list list)
+int handle_print(char fmt, va_list list, int flags)
 {
     int i, printed_chars = -1;
     char buffer[BUFF_SIZE];
@@ -27,7 +27,7 @@ int handle_print(char fmt, va_list list)
     for (i = 0; fmt_types[i].fmt != '\0'; i++)
         if (fmt == fmt_types[i].fmt)
         {
-            printed_chars = fmt_types[i].fn(list, buffer);
+            printed_chars = fmt_types[i].fn(list, buffer, flags);
             break;
         }
 
